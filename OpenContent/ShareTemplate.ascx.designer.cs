@@ -148,6 +148,15 @@ namespace Satrabel.OpenContent {
         protected global::System.Web.UI.WebControls.DropDownList ddlWebTemplates;
         
         /// <summary>
+        /// rpWebTemplates control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rpWebTemplates;
+        
+        /// <summary>
         /// lblMoreinfo control.
         /// </summary>
         /// <remarks>

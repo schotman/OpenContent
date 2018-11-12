@@ -72,7 +72,15 @@
         <fieldset>
             <div class="dnnFormItem">
                 <dnn:Label ID="lblWebTemplates" ControlName="ddlWebTemplates" runat="server" />
+
                 <asp:DropDownList ID="ddlWebTemplates" runat="server"></asp:DropDownList>
+
+                <asp:Repeater ID="rpWebTemplates" runat="server">
+                    <itemtemplate>
+                        <span>Item <%# Container.ItemIndex + 1 %></span>
+                        <asp:Literal runat="server" Text="<%# Container.DataItem %>"></asp:Literal>
+                    </itemtemplate>
+                </asp:Repeater>
             </div>
             <div class="dnnFormItem">
                 <dnn:Label ID="lblMoreinfo" ControlName="fuFile" runat="server" />

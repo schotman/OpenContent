@@ -14,3 +14,27 @@
     color: #585858;
     /*margin-bottom: 5px;*/
 }
+
+.templateitem {
+    width: auto;
+    clear: both;
+    border: 1px solid #cdcdcd;
+    padding: 15px;
+    margin: 15px;
+}
+    .templateitem .templatetitle {
+        width: 100%;
+        display: block;
+        font-weight: bold;
+        padding-bottom: 15px;
+    }
+    .templateitem .templateimage {
+        max-width: 50%;
+        display: block;
+        height: auto;
+    }
+    .templateitem .templatedescription {
+        width: 100%;
+        display: block;
+        padding-top: 15px;
+    }

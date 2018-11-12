@@ -85,13 +85,36 @@ namespace Satrabel.OpenContent
             else if (rblAction.SelectedValue == "importweb") // Import from web
             {
                 phImportWeb.Visible = true;
-                ddlWebTemplates.Items.Clear();
-                FeedParser parser = new FeedParser();
-                var items = parser.Parse("http://www.openextensions.net/templates?agentType=rss&PropertyTypeID=9", FeedType.RSS);
-                foreach (var item in items)
-                {
-                    ddlWebTemplates.Items.Add(new ListItem(item.Title, item.ZipEnclosure));
-                }
+                ddlWebTemplates.Items.Clear(); // moet geen dropdown zijn maar een lijst met items en eoa select optie, bijv checkbox
+
+                // 1. api call to template list: https://api.github.com/repos/sachatrauwaen/OpenContent-Templates/contents (type='dir')
+
+                // 2. per template ophalen manifest: 
+                // 3. uit manifest (master branch) de naam, onmschrijving en evt. afbeelding lezen 
+                // inhoud schema file(is json):
+                // https://raw.githubusercontent.com/sachatrauwaen/OpenContent-Templates/master/Bootstrap3Accordion/manifest.json
+
+                // 4. lijst templates opbouwen voor tonen
+
+                // vervolgens:
+                // 5. template laten kiezen
+                // 6. om eigen/locale template naam vragen plus locatie (radio button)? host map /skin map / portal map
+
+                // 7. alle files uit het gekozen template downloaden naar locale template map
+                // JSON lijst van files in OC template, voor download in locale map
+                // https://api.github.com/repos/sachatrauwaen/OpenContent-Templates/contents/Bootstrap3Accordion
+
+                rpWebTemplates.DataSource = GithubTemplateUtils.ProcessGithubTemplates();
+                rpWebTemplates.DataBind();
+
+
+
+                //FeedParser parser = new FeedParser();
+                //var items = parser.Parse("http://www.openextensions.net/templates?agentType=rss&PropertyTypeID=9", FeedType.RSS);
+                //foreach (var item in items)
+                //{
+                //    ddlWebTemplates.Items.Add(new ListItem(item.Title, item.ZipEnclosure));
+                //}
             }
             else if (rblAction.SelectedValue == "copy") // copy
             {
@@ -105,12 +128,16 @@ namespace Satrabel.OpenContent
             string strMessage = "";
             try
             {
+                // onderstaande is afhankelijk van keuze (host, skin, portal path) hierboven (als we dit implementeren)
                 var folder = FolderManager.Instance.GetFolder(PortalId, GetModuleSubDir() + "/Templates");
                 if (folder == null)
                 {
                     folder = FolderManager.Instance.AddFolder(PortalId, GetModuleSubDir() + "/Templates");
                 }
                 var fileManager = DotNetNuke.Services.FileSystem.FileManager.Instance;
+
+
+                // template name wordt gedefinieerd door gebruiker, wanneer leeg identiek aan naam map
                 if (Path.GetExtension(fuFile.FileName) == ".zip")
                 {
                     string TemplateName = Path.GetFileNameWithoutExtension(fuFile.FileName);

@@ -18,7 +18,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Satrabel.OpenContent</RootNamespace>
     <AssemblyName>OpenContent</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
@@ -347,6 +347,7 @@
     <Compile Include="Components\Json\JsonUtils.cs" />
     <Compile Include="Components\DnnEntitiesAPIController.cs" />
     <Compile Include="Components\Lucene\Index\IndexExtentions.cs" />
+    <Compile Include="Components\Utils\GithubTemplateUtils.cs" />
     <Compile Include="Components\Utils\HttpUtils.cs" />
     <Compile Include="Components\Logging\Logger.cs" />
     <Compile Include="Components\OpenContentController.cs" />
