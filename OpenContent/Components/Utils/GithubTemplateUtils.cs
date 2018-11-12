@@ -65,29 +65,32 @@ namespace Satrabel.OpenContent.Components
                 dynamic template = t;
                 string name = template.name;
 
-                JObject manifestfile = GetManifestFile(name);
-                if (manifestfile != null)
+                if (template.type =="dir")
                 {
-                    dynamic manifest = manifestfile;
-                    string item = "<div class='templateitem'>";
+                    JObject manifestfile = GetManifestFile(name);
+                    if (manifestfile != null)
+                    {
+                        dynamic manifest = manifestfile;
+                        string item = "<div class='templateitem'>";
 
-                    string title = manifest.Title;
-                    if (title != "") { item = item + "<span class='templatetitle'>" + title + "</span>"; }
-                    else { item = item + "<span class='templatetitle'>" + name + "</span>";}
+                        string title = manifest.Title;
+                        if (title != "") { item = item + "<span class='templatetitle'>" + title + "</span>"; }
+                        else { item = item + "<span class='templatetitle'>" + name + "</span>"; }
 
-                    string imageurl = "https://raw.githubusercontent.com/schotman/OpenContent-Templates/gitTemplates/" + name + "/" +  manifest.Image;
-                    if (imageurl != "") { item = item + "<img class='templateimage' src='" + imageurl + "'/>"; }
+                        string imageurl = "https://raw.githubusercontent.com/schotman/OpenContent-Templates/gitTemplates/" + name + "/" + manifest.Image;
+                        if (imageurl != "") { item = item + "<img class='templateimage' src='" + imageurl + "'/>"; }
 
-                    string description = manifest.Description;
-                    if(description !="") { item = item + "<span class='templatedescription'>" + description + "</span>"; }
+                        string description = manifest.Description;
+                        if (description != "") { item = item + "<span class='templatedescription'>" + description + "</span>"; }
 
-                    item = item + "</div>";
+                        item = item + "</div>";
 
-                    templatelist.Add(item);
-                }
-                else
-                {
-                    templatelist.Add("<div class='templateitem'><span class='templatetitle'>" + name + "</span></div>");
+                        templatelist.Add(item);
+                    }
+                    else
+                    {
+                        templatelist.Add("<div class='templateitem'><span class='templatetitle'>" + name + "</span></div>");
+                    }
                 }
 
             }
